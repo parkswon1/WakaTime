@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  app:
+    image: postgres13image
+    build:
+      context: ../file/
+      dockerfile: Dockerfile.postgres
+    container_name: postgres13
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    restart: always
+    volumes:
+      - ../postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes: {}
