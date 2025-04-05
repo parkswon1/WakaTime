@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: time
+
+wakatime:
+  client-id: YOUR_CLIENT_ID
+  client-secret: YOUR_CLIENT_SECRET
