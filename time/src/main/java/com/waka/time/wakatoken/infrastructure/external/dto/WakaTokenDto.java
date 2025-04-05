@@ -1,4 +1,4 @@
-package com.waka.time.wakatoken.infrastructure.persistence.dto;
+package com.waka.time.wakatoken.infrastructure.external.dto;
 
 import com.waka.time.wakatoken.domain.model.WakaToken;
 import lombok.AllArgsConstructor;

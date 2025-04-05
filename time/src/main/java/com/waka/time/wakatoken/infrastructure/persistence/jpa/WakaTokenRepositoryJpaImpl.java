@@ -1,9 +1,9 @@
-package com.waka.time.wakatoken.infrastructure.persistence;
+package com.waka.time.wakatoken.infrastructure.persistence.jpa;
 
 import com.waka.time.wakatoken.domain.model.WakaToken;
 import com.waka.time.wakatoken.domain.repository.WakaTokenRepository;
-import com.waka.time.wakatoken.infrastructure.persistence.entity.WakaTokenEntity;
 import com.waka.time.wakatoken.infrastructure.persistence.jpa.WakaTokenJpaRepository;
+import com.waka.time.wakatoken.infrastructure.persistence.jpa.entity.WakaTokenEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

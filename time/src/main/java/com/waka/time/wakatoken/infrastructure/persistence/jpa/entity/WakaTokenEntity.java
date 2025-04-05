@@ -1,4 +1,4 @@
-package com.waka.time.wakatoken.infrastructure.persistence.entity;
+package com.waka.time.wakatoken.infrastructure.persistence.jpa.entity;
 
 import com.waka.time.wakatoken.domain.model.WakaToken;
 import jakarta.persistence.*;

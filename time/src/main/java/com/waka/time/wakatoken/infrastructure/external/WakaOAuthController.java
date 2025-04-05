@@ -1,4 +1,4 @@
-package com.waka.time.wakatoken.infrastructure.persistence;
+package com.waka.time.wakatoken.infrastructure.external;
 
 import com.waka.time.properties.WakaTimeOAuthProperties;
 import com.waka.time.wakatoken.application.service.WakaAuthService;
