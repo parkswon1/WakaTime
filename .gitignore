@@ -1,1 +1,3 @@
 /docker/postgres_data/
+.idea
+.vscode
