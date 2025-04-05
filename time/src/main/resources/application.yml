@@ -1,7 +1,8 @@
 spring:
   application:
     name: time
+  profiles:
+    active: local
 
-wakatime:
-  client-id: YOUR_CLIENT_ID
-  client-secret: YOUR_CLIENT_SECRET
+  config:
+    import: "classpath:wakatime.yml"
