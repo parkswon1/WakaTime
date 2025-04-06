@@ -1,4 +1,4 @@
-package com.waka.time.wakatoken.application.impl;
+package com.waka.time.wakatoken.infrastructure.service;
 
 import com.waka.time.wakatoken.application.service.WakaAuthService;
 import com.waka.time.wakatoken.domain.model.WakaToken;
