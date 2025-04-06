@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
  * WakaTime에 인증 코드를 보내고 토큰을 받아오는 외부 API 연동 로직입니다.
  *
  * @author 박석원
- * @updated 2025-04-05
+ * @updated 2025-04-06
  */
 @Component
 @RequiredArgsConstructor
@@ -47,7 +47,7 @@ public class WakaOAuthClient {
         ResponseEntity<String> response = restTemplate.postForEntity("https://wakatime.com/oauth/token", request, String.class);
 
         String raw = response.getBody();
-        if (raw == null || !raw.contains("access_token")) {
+        if (!raw.contains("access_token")) {
             throw new IllegalStateException("WakaTime token 요청 실패");
         }
 
@@ -59,14 +59,14 @@ public class WakaOAuthClient {
                         arr -> URLDecoder.decode(arr[1], StandardCharsets.UTF_8)
                 ));
 
-        return new WakaToken(
-                userId,
-                tokenMap.get("uid"),
-                tokenMap.get("access_token"),
-                tokenMap.get("refresh_token"),
-                tokenMap.get("token_type"),
-                tokenMap.get("scope"),
-                LocalDateTime.now().plusSeconds(Long.parseLong(tokenMap.get("expires_in")))
-        );
+        return WakaToken.builder()
+                .userId(userId)
+                .wakaId(tokenMap.get("uid"))
+                .accessToken(tokenMap.get("access_token"))
+                .refreshToken(tokenMap.get("refresh_token"))
+                .tokenType(tokenMap.get("token_type"))
+                .scope(tokenMap.get("scope"))
+                .expiresAt(LocalDateTime.now().plusSeconds(Long.parseLong(tokenMap.get("expires_in"))))
+                .build();
     }
 }

@@ -1,81 +1,93 @@
 package com.waka.time.wakatoken.infrastructure.persistence.jpa.entity;
 
+import com.waka.time.common.base.BaseEntity;
 import com.waka.time.wakatoken.domain.model.WakaToken;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 /**
  * <h1>WakaToken JPA Entity</h1>
  * user_waka_token 테이블과 매핑되는 영속성 객체입니다.
- * 도메인 객체로부터 변환/역변환됩니다.
  *
- * author 박석원
- * updated 2025-04-05
+ * @author 박석원
+ * @updated 2025-04-06
  */
 @Entity
 @Table(name = "user_waka_token")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class WakaTokenEntity {
+@Builder
+public class WakaTokenEntity implements BaseEntity<WakaToken> {
 
     @Id
+    @Column(name="user_id")
     private Long userId;
 
+    @Column(name="waka_id")
     private String wakaId;
 
+    @Column(name="access_Token")
     private String accessToken;
 
+    @Column(name="refresh_Token")
     private String refreshToken;
 
-    private LocalDateTime expiresAt;
-
-    private String scope;
-
+    @Column(name="token_Type")
     private String tokenType;
 
+    @Column(name="scope")
+    private String scope;
+
+    @Column(name="expires_at")
+    private LocalDateTime expiresAt;
+
+    @Column(name="created_at")
     private LocalDateTime createdAt;
 
+    @Column(name="updated_at")
     private LocalDateTime updatedAt;
 
-    public static WakaTokenEntity from(WakaToken token) {
-        return new WakaTokenEntity(
-                token.getUserId(),
-                token.getWakaId(),
-                token.getAccessToken(),
-                token.getRefreshToken(),
-                token.getExpiresAt(),
-                token.getScope(),
-                token.getTokenType(),
-                LocalDateTime.now(),
-                LocalDateTime.now()
-        );
+    public static WakaTokenEntity fromDomain(WakaToken domain) {
+        return WakaTokenEntity.builder()
+                .userId(domain.getUserId())
+                .wakaId(domain.getWakaId())
+                .accessToken(domain.getAccessToken())
+                .refreshToken(domain.getRefreshToken())
+                .tokenType(domain.getTokenType())
+                .scope(domain.getScope())
+                .expiresAt(domain.getExpiresAt())
+                .createdAt(domain.getCreatedAt())
+                .updatedAt(domain.getUpdateAt())
+                .build();
     }
 
+    @Override
+    public void updateFromDomain(WakaToken domain) {
+        this.wakaId = domain.getWakaId();
+        this.accessToken = domain.getAccessToken();
+        this.refreshToken = domain.getRefreshToken();
+        this.tokenType = domain.getTokenType();
+        this.scope = domain.getScope();
+        this.expiresAt = domain.getExpiresAt();
+        this.createdAt = domain.getCreatedAt();
+        this.updatedAt = domain.getUpdateAt();
+    }
+
+    @Override
     public WakaToken toDomain() {
-        return new WakaToken(
-                userId,
-                wakaId,
-                accessToken,
-                refreshToken,
-                tokenType,
-                scope,
-                expiresAt
-        );
-    }
-
-    public WakaTokenEntity updateFrom(WakaToken token) {
-        this.accessToken = token.getAccessToken();
-        this.refreshToken = token.getRefreshToken();
-        this.expiresAt = token.getExpiresAt();
-        this.scope = token.getScope();
-        this.tokenType = token.getTokenType();
-        this.updatedAt = LocalDateTime.now();
-        return this;
+        return WakaToken.builder()
+                .userId(userId)
+                .wakaId(wakaId)
+                .accessToken(accessToken)
+                .refreshToken(refreshToken)
+                .tokenType(tokenType)
+                .scope(scope)
+                .expiresAt(expiresAt)
+                .createdAt(createdAt)
+                .updateAt(updatedAt)
+                .build();
     }
 }
