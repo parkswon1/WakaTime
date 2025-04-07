@@ -178,3 +178,5 @@ COMMENT ON COLUMN waka_summary_machine.text_time IS '사람이 읽기 쉬운 시
 COMMENT ON COLUMN waka_summary_machine.hours IS '시간 (시)';
 COMMENT ON COLUMN waka_summary_machine.minutes IS '시간 (분)';
 COMMENT ON COLUMN waka_summary_machine.seconds IS '시간 (초)';
+
+COMMIT;
