@@ -1,5 +1,5 @@
 CREATE TABLE waka_heartbeat (
-                                id                 UUID PRIMARY KEY DEFAULT gen_random_uuid(), -- heartbeat 고유 ID
+                                id                 VARCHAR(255) PRIMARY KEY, -- heartbeat 고유 ID
                                 user_id            VARCHAR(100),     -- 사용자 ID
                                 timestamp_utc      TIMESTAMP,        -- heartbeat 발생 시간 (UTC 기준)
                                 entity             TEXT,             -- 파일 경로 or 도메인 or 앱 이름
