@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 /**
  * <h1>WakaTime OAuth 콜백 컨트롤러</h1>
@@ -43,10 +45,13 @@ public class WakaOAuthController {
     public ResponseEntity<Void> redirectToWakaTime() {
         String clientId = props.getClientId();
         String redirectUri = props.getRedirectUri();
+
+        String scope = "read_logged_time read_summaries read_goals";
         String url = "https://wakatime.com/oauth/authorize"
                 + "?client_id=" + clientId
                 + "&response_type=code"
-                + "&redirect_uri=" + redirectUri;
+                + "&redirect_uri=" + redirectUri
+                + "&scope=" + URLEncoder.encode(scope, StandardCharsets.UTF_8);
 
         return ResponseEntity.status(302).location(URI.create(url)).build();
     }
