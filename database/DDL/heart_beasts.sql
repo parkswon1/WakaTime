@@ -19,6 +19,8 @@ CREATE TABLE waka_heartbeat (
                                 is_write           BOOLEAN,          -- 작성 작업 여부
                                 created_at         TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- 저장 시각
 );
+-- user_id에도 idnex 생성
+CREATE INDEX idx_waka_heartbeat_user_id ON waka_heartbeat(user_id);
 
 -- 테이블 설명
 COMMENT ON TABLE waka_heartbeat IS 'WakaTime heartbeat 원시 활동 로그 (초 단위 추적 데이터)';

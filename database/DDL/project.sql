@@ -13,8 +13,10 @@ CREATE TABLE waka_project (
                               first_heartbeat_at TIMESTAMP, -- 첫 번째 코드 통계 수신 시간 (ISO 8601 형식)
                               url VARCHAR(255), -- 프로젝트 URL (wakatime.com 상대 URL)
                               urlencoded_name VARCHAR(255), -- URL 인코딩된 프로젝트 이름
-                              created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- 프로젝트 생성 시간
-                              CONSTRAINT unique_project_name UNIQUE(name) -- 프로젝트 이름에 대한 유니크 제약 조건
+                              project_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- 프로젝트 생성 시간
+                              CONSTRAINT unique_project_name UNIQUE(name), -- 프로젝트 이름에 대한 유니크 제약 조건
+                              created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- 생성 시간
+                              modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- 수정 시간
 );
 
 -- 컬럼에 대한 설명 추가
@@ -31,6 +33,8 @@ COMMENT ON COLUMN waka_project.human_readable_first_heartbeat_at IS '첫 번째 
 COMMENT ON COLUMN waka_project.first_heartbeat_at IS '첫 번째 코드 통계 수신 시간 (ISO 8601 형식)';
 COMMENT ON COLUMN waka_project.url IS '프로젝트 URL (wakatime.com 상대 URL)';
 COMMENT ON COLUMN waka_project.urlencoded_name IS 'URL 인코딩된 프로젝트 이름';
+COMMENT ON COLUMN waka_project.project_created_at IS '프로젝트 생성 시간';
 COMMENT ON COLUMN waka_project.created_at IS '프로젝트 생성 시간';
+COMMENT ON COLUMN waka_project.modified_at IS '프로젝트 생성 시간';
 
 COMMIT;

@@ -1,4 +1,4 @@
-CREATE TABLE waka_summary (
+CREATE TABLE waka_daily_summary (
                               user_id          VARCHAR(100),
                               summary_date     DATE,
                               start_time       TIMESTAMP,
@@ -11,7 +11,7 @@ CREATE TABLE waka_summary (
                               PRIMARY KEY (user_id, summary_date)
 );
 
-COMMENT ON TABLE waka_summary IS '사용자별 일자별 코딩 요약';
+COMMENT ON TABLE waka_daily_summary IS '사용자별 일자별 코딩 요약';
 
 COMMENT ON COLUMN waka_summary.user_id IS '사용자 ID';
 COMMENT ON COLUMN waka_summary.summary_date IS '코딩 요약 일자 (KST 기준)';
@@ -23,7 +23,7 @@ COMMENT ON COLUMN waka_summary.digital_time IS '디지털 시계 형식 (예: 1:
 COMMENT ON COLUMN waka_summary.text_time IS '사람이 읽기 쉬운 시간 표현 (예: 1 hr 30 mins)';
 COMMENT ON COLUMN waka_summary.created_at IS '레코드 생성 시각';
 
-CREATE TABLE waka_summary_project (
+CREATE TABLE waka_daily_summary_project (
                                       user_id          VARCHAR(100),
                                       summary_date     DATE,
                                       name             VARCHAR(255),
@@ -32,20 +32,22 @@ CREATE TABLE waka_summary_project (
                                       digital_time     VARCHAR(20),
                                       text_time        VARCHAR(100),
                                       hours            INTEGER,
-                                      minutes          INTEGER
+                                      minutes          INTEGER,
+                                      created_at       TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                                      PRIMARY KEY (user_id, summary_date)
 );
 
-COMMENT ON TABLE waka_summary_project IS '일자별 프로젝트별 코딩 시간 통계';
+COMMENT ON TABLE waka_daily_summary_project IS '일자별 프로젝트별 코딩 시간 통계';
 
-COMMENT ON COLUMN waka_summary_project.user_id IS '사용자 ID';
-COMMENT ON COLUMN waka_summary_project.summary_date IS '코딩 요약 일자';
-COMMENT ON COLUMN waka_summary_project.name IS '프로젝트 이름';
-COMMENT ON COLUMN waka_summary_project.total_seconds IS '해당 프로젝트에서 코딩한 시간 (초)';
-COMMENT ON COLUMN waka_summary_project.percent IS '전체 중 해당 프로젝트의 시간 비율 (%)';
-COMMENT ON COLUMN waka_summary_project.digital_time IS '디지털 시계 형식';
-COMMENT ON COLUMN waka_summary_project.text_time IS '사람이 읽기 쉬운 시간 표현';
-COMMENT ON COLUMN waka_summary_project.hours IS '해당 프로젝트에서 작업한 시간 (시)';
-COMMENT ON COLUMN waka_summary_project.minutes IS '해당 프로젝트에서 작업한 시간 (분)';
+COMMENT ON COLUMN waka_daily_summary_project.user_id IS '사용자 ID';
+COMMENT ON COLUMN waka_daily_summary_project.summary_date IS '코딩 요약 일자';
+COMMENT ON COLUMN waka_daily_summary_project.name IS '프로젝트 이름';
+COMMENT ON COLUMN waka_daily_summary_project.total_seconds IS '해당 프로젝트에서 코딩한 시간 (초)';
+COMMENT ON COLUMN waka_daily_summary_project.percent IS '전체 중 해당 프로젝트의 시간 비율 (%)';
+COMMENT ON COLUMN waka_daily_summary_project.digital_time IS '디지털 시계 형식';
+COMMENT ON COLUMN waka_daily_summary_project.text_time IS '사람이 읽기 쉬운 시간 표현';
+COMMENT ON COLUMN waka_daily_summary_project.hours IS '해당 프로젝트에서 작업한 시간 (시)';
+COMMENT ON COLUMN waka_daily_summary_project.minutes IS '해당 프로젝트에서 작업한 시간 (분)';
 
 CREATE TABLE waka_summary_language (
                                        user_id          VARCHAR(100),
@@ -57,7 +59,9 @@ CREATE TABLE waka_summary_language (
                                        text_time        VARCHAR(100),
                                        hours            INTEGER,
                                        minutes          INTEGER,
-                                       seconds          INTEGER
+                                       seconds          INTEGER,
+                                       created_at       TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                                       PRIMARY KEY (user_id, summary_date)
 );
 
 COMMENT ON TABLE waka_summary_language IS '일자별 사용 언어별 코딩 시간 통계';
@@ -83,7 +87,9 @@ CREATE TABLE waka_summary_editor (
                                      text_time        VARCHAR(100),
                                      hours            INTEGER,
                                      minutes          INTEGER,
-                                     seconds          INTEGER
+                                     seconds          INTEGER,
+                                     created_at       TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                                     PRIMARY KEY (user_id, summary_date)
 );
 
 COMMENT ON TABLE waka_summary_editor IS '일자별 사용 에디터별 코딩 시간 통계';
@@ -109,7 +115,9 @@ CREATE TABLE waka_summary_os (
                                  text_time        VARCHAR(100),
                                  hours            INTEGER,
                                  minutes          INTEGER,
-                                 seconds          INTEGER
+                                 seconds          INTEGER,
+                                 created_at       TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                                 PRIMARY KEY (user_id, summary_date)
 );
 
 COMMENT ON TABLE waka_summary_os IS '일자별 운영체제별 코딩 시간 통계';
@@ -135,7 +143,9 @@ CREATE TABLE waka_summary_dependency (
                                          text_time        VARCHAR(100),
                                          hours            INTEGER,
                                          minutes          INTEGER,
-                                         seconds          INTEGER
+                                         seconds          INTEGER,
+                                         created_at       TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                                         PRIMARY KEY (user_id, summary_date)
 );
 
 COMMENT ON TABLE waka_summary_dependency IS '일자별 의존성(라이브러리)별 코딩 시간 통계';
@@ -162,7 +172,9 @@ CREATE TABLE waka_summary_machine (
                                       text_time         VARCHAR(100),
                                       hours             INTEGER,
                                       minutes           INTEGER,
-                                      seconds           INTEGER
+                                      seconds           INTEGER,
+                                      created_at       TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                                      PRIMARY KEY (user_id, summary_date)
 );
 
 COMMENT ON TABLE waka_summary_machine IS '일자별 머신(장비)별 코딩 시간 통계';

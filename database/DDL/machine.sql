@@ -1,9 +1,8 @@
 -- waka_machine 테이블 생성
 CREATE TABLE waka_machine (
-                              id UUID PRIMARY KEY DEFAULT gen_random_uuid(), -- 머신 고유 ID (UUID)
+                              machine_name_id VARCHAR(255) PRIMARY KEY, -- WakaTime 기준 머신 고유 ID
                               user_id UUID NOT NULL, -- 사용자 ID
                               machine_name VARCHAR(255) NOT NULL, -- 머신 이름 (호스트명 + IP)
-                              machine_name_id VARCHAR(255) NOT NULL, -- WakaTime 기준 머신 고유 ID
                               total_seconds FLOAT NOT NULL, -- 해당 머신에서 작업한 시간 (초)
                               percent FLOAT NOT NULL, -- 전체 중 해당 머신의 시간 비율 (%)
                               digital_time VARCHAR(255) NOT NULL, -- 디지털 시계 형식
@@ -11,15 +10,16 @@ CREATE TABLE waka_machine (
                               hours INT NOT NULL, -- 시간 (시)
                               minutes INT NOT NULL, -- 시간 (분)
                               created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- 생성 시간
-                              modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- 수정 시간
-                              CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES waka_user(id) ON DELETE CASCADE -- 사용자와의 관계 (외래키 제약조건)
+                              modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- 수정 시간
 );
 
+--user--id에 index 추가
+CREATE INDEX idx_waka_machine_user_id ON waka_machine(user_id);
+
 -- 컬럼에 대한 설명 추가
-COMMENT ON COLUMN waka_machine.id IS '머신 고유 ID';
+COMMENT ON COLUMN waka_machine.machine_name_id IS '머신 고유 ID (WakaTime 기준)';
 COMMENT ON COLUMN waka_machine.user_id IS '사용자 ID';
 COMMENT ON COLUMN waka_machine.machine_name IS '머신 이름 (호스트명 + IP)';
-COMMENT ON COLUMN waka_machine.machine_name_id IS '머신 고유 ID (WakaTime 기준)';
 COMMENT ON COLUMN waka_machine.total_seconds IS '해당 머신에서 작업한 시간 (초)';
 COMMENT ON COLUMN waka_machine.percent IS '전체 중 해당 머신의 시간 비율 (%)';
 COMMENT ON COLUMN waka_machine.digital_time IS '디지털 시계 형식';
