@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
  * WakaTime에 인증 코드를 보내고 토큰을 받아오는 외부 API 연동 로직입니다.
  *
  * @author 박석원
- * @updated 2025-04-06
+ * @updated 2025-04-08
  */
 @Component
 @RequiredArgsConstructor
@@ -44,7 +44,7 @@ public class WakaOAuthClient {
         params.add("code", code);
 
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(params, headers);
-        ResponseEntity<String> response = restTemplate.postForEntity("https://wakatime.com/oauth/token", request, String.class);
+        ResponseEntity<String> response = restTemplate.postForEntity(properties.getOauthUrl(), request, String.class);
 
         String raw = response.getBody();
         if (!raw.contains("access_token")) {
