@@ -14,5 +14,5 @@ import java.util.Optional;
  */
 public interface WakaTokenRepository {
     WakaToken save(WakaToken token);
-    Optional<WakaToken> findByUserId(Long userId);
+    Optional<WakaToken> findByUserId(String userId);
 }

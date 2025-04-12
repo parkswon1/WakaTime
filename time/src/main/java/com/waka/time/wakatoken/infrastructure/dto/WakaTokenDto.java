@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 @Builder
 public class WakaTokenDto implements BaseDto<WakaToken> {
 
-    private final Long userId;
+    private final String userId;
     private final String wakaId;
     private final String accessToken;
     private final String refreshToken;

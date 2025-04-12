@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface WakaTokenJpaRepository extends JpaRepository<WakaTokenEntity, Long> {
-    Optional<WakaTokenEntity> findByUserId(Long userId);
+    Optional<WakaTokenEntity> findByUserId(String userId);
     Optional<WakaTokenEntity> findByWakaId(String wakaId);
 }

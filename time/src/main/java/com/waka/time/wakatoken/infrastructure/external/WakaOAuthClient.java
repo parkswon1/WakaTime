@@ -32,7 +32,7 @@ public class WakaOAuthClient {
     private final RestTemplate restTemplate = new RestTemplate();
     private final WakaTimeOAuthProperties properties;
 
-    public WakaToken requestToken(String code, Long userId) {
+    public WakaToken requestToken(String code, String userId) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 

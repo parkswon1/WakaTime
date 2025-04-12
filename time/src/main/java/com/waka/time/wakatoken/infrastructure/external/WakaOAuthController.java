@@ -30,7 +30,7 @@ public class WakaOAuthController {
 
     @GetMapping("/callback")
     public ResponseEntity<String> callback(@RequestParam("code") String code) {
-        Long userId = 1L;
+        String userId = "1";
         wakaAuthService.authenticate(code, userId);
         return ResponseEntity.ok("WakaTime 인증 완료");
     }

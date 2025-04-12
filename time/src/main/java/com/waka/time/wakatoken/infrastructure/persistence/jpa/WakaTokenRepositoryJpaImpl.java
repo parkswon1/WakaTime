@@ -36,7 +36,7 @@ public class WakaTokenRepositoryJpaImpl implements WakaTokenRepository {
     }
 
     @Override
-    public Optional<WakaToken> findByUserId(Long userId) {
+    public Optional<WakaToken> findByUserId(String userId) {
         return wakaTokenJpaRepository.findByUserId(userId).map(WakaTokenEntity::toDomain);
     }
 }

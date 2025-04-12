@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 
 /**
@@ -27,7 +28,7 @@ import java.time.LocalDateTime;
 @Getter
 @Builder
 public class WakaToken {
-    private final Long userId;
+    private final String userId;
     private final String wakaId;
     private final String accessToken;
     private final String refreshToken;

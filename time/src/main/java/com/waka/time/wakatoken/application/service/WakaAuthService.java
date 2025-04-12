@@ -11,5 +11,5 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface WakaAuthService {
-    void authenticate(String code, Long userId);
+    void authenticate(String code, String userId);
 }

@@ -14,7 +14,7 @@ public class WakaAuthServiceImpl implements WakaAuthService {
     private final WakaTokenRepository wakaTokenRepository;
 
     @Override
-    public void authenticate(String code, Long userId) {
+    public void authenticate(String code, String userId) {
         WakaToken token = wakaOAuthClient.requestToken(code, userId);
         wakaTokenRepository.save(token);
     }
