@@ -1,6 +1,6 @@
 CREATE TABLE waka_heartbeat (
-                                id                 UUID PRIMARY KEY DEFAULT gen_random_uuid(), -- heartbeat 고유 ID
-                                user_id            VARCHAR(100),     -- 사용자 ID
+                                heartbeat_id                 UUID PRIMARY KEY DEFAULT gen_random_uuid(), -- heartbeat 고유 ID
+                                waka_id            VARCHAR(50),      -- 사용자 ID
                                 timestamp_utc      TIMESTAMP,        -- heartbeat 발생 시간 (UTC 기준)
                                 entity             TEXT,             -- 파일 경로 or 도메인 or 앱 이름
                                 type               VARCHAR(50),      -- entity 타입 (file, app, domain 등)
@@ -20,14 +20,14 @@ CREATE TABLE waka_heartbeat (
                                 created_at         TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- 저장 시각
 );
 -- user_id에도 idnex 생성
-CREATE INDEX idx_waka_heartbeat_user_id ON waka_heartbeat(user_id);
+CREATE INDEX idx_waka_heartbeat_user_id ON waka_heartbeat(waka_id);
 
 -- 테이블 설명
 COMMENT ON TABLE waka_heartbeat IS 'WakaTime heartbeat 원시 활동 로그 (초 단위 추적 데이터)';
 
 -- 컬럼 설명
-COMMENT ON COLUMN waka_heartbeat.id IS 'heartbeat UUID (기본키)';
-COMMENT ON COLUMN waka_heartbeat.user_id IS '사용자 ID';
+COMMENT ON COLUMN waka_heartbeat.heartbeat_id IS 'heartbeat UUID (기본키)';
+COMMENT ON COLUMN waka_heartbeat.waka_id IS '사용자 ID';
 COMMENT ON COLUMN waka_heartbeat.timestamp_utc IS '활동 발생 시각 (UTC 기준)';
 COMMENT ON COLUMN waka_heartbeat.entity IS '작업 대상 (파일 경로, 도메인 등)';
 COMMENT ON COLUMN waka_heartbeat.type IS 'entity 유형 (file, app, domain)';

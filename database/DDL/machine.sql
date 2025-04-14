@@ -1,7 +1,7 @@
 -- waka_machine 테이블 생성
 CREATE TABLE waka_machine (
                               machine_name_id VARCHAR(255) PRIMARY KEY, -- WakaTime 기준 머신 고유 ID
-                              user_id UUID NOT NULL, -- 사용자 ID
+                              waka_id VARCHAR(50) NOT NULL, -- 사용자 ID
                               machine_name VARCHAR(255) NOT NULL, -- 머신 이름 (호스트명 + IP)
                               total_seconds FLOAT NOT NULL, -- 해당 머신에서 작업한 시간 (초)
                               percent FLOAT NOT NULL, -- 전체 중 해당 머신의 시간 비율 (%)
@@ -14,11 +14,11 @@ CREATE TABLE waka_machine (
 );
 
 --user--id에 index 추가
-CREATE INDEX idx_waka_machine_user_id ON waka_machine(user_id);
+CREATE INDEX idx_waka_machine_user_id ON waka_machine(waka_id);
 
 -- 컬럼에 대한 설명 추가
 COMMENT ON COLUMN waka_machine.machine_name_id IS '머신 고유 ID (WakaTime 기준)';
-COMMENT ON COLUMN waka_machine.user_id IS '사용자 ID';
+COMMENT ON COLUMN waka_machine.waka_id IS '사용자 ID';
 COMMENT ON COLUMN waka_machine.machine_name IS '머신 이름 (호스트명 + IP)';
 COMMENT ON COLUMN waka_machine.total_seconds IS '해당 머신에서 작업한 시간 (초)';
 COMMENT ON COLUMN waka_machine.percent IS '전체 중 해당 머신의 시간 비율 (%)';
