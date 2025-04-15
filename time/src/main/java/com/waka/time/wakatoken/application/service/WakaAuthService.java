@@ -1,5 +1,6 @@
 package com.waka.time.wakatoken.application.service;
 
+import com.waka.time.wakatoken.domain.model.WakaToken;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,4 +13,5 @@ import org.springframework.stereotype.Service;
 @Service
 public interface WakaAuthService {
     void authenticate(String code, String userId);
+    WakaToken findByUserId(String userId);
 }
