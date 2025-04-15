@@ -1,0 +1,55 @@
+### 🔑 변수 정의
+@accessToken =
+
+### ✅ 1. 사용자 정보 조회
+GET https://wakatime.com/api/v1/users/current
+Authorization: Bearer {{accessToken}}
+
+### ✅ 2. 최근 7일 통계 요약 조회
+GET https://wakatime.com/api/v1/users/current/stats/last_7_days
+Authorization: Bearer {{accessToken}}
+
+### ✅ 3. 기간별 요약 통계 (start~end)
+GET https://wakatime.com/api/v1/users/current/summaries?start=2025-04-01&end=2025-04-07
+Authorization: Bearer {{accessToken}}
+
+### ✅ 4. 프로젝트 목록 조회
+GET https://wakatime.com/api/v1/users/current/projects
+Authorization: Bearer {{accessToken}}
+
+### ✅ 5. 특정 프로젝트 커밋별 코딩 시간
+GET https://wakatime.com/api/v1/users/current/projects/{project_id}/commits
+Authorization: Bearer {{accessToken}}
+
+### ✅ 6. 목표(Goals) 조회
+GET https://wakatime.com/api/v1/users/current/goals
+Authorization: Bearer {{accessToken}}
+
+
+### ✅ 1. 사용자 기본 정보
+GET https://wakatime.com/api/v1/users/current
+Authorization: Bearer {{accessToken}}
+
+### ✅ 2. 전체 통계 (last_7_days, last_30_days, all_time 등 가능)
+GET https://wakatime.com/api/v1/users/current/stats/last_7_days
+Authorization: Bearer {{accessToken}}
+
+### ✅ 3. 기간별 요약 통계 (일별 상세 + 언어, 에디터, 프로젝트 포함)
+GET https://wakatime.com/api/v1/users/current/summaries?start=2025-04-07&end=2025-04-07
+Authorization: Bearer {{accessToken}}
+
+### ✅ 4. 프로젝트 목록
+GET https://wakatime.com/api/v1/users/current/projects
+Authorization: Bearer {{accessToken}}
+
+### ✅ 5. 목표 목록
+GET https://wakatime.com/api/v1/users/current/goals
+Authorization: Bearer {{accessToken}}
+
+### ✅ 6. 특정 날짜 시간대별 상세 활동 (예: 작업 집중 시간대)
+GET https://wakatime.com/api/v1/users/current/durations?date=2025-04-07
+Authorization: Bearer {{accessToken}}
+
+### ✅ 7. 시간 추적 히스토리 (시간 단위 로그)
+GET https://wakatime.com/api/v1/users/current/heartbeats?date=2025-04-07
+Authorization: Bearer {{accessToken}}
