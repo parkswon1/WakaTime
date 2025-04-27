@@ -1,7 +1,11 @@
 package com.waka.time.wakatoken.application.service;
 
+import com.waka.time.wakatoken.application.port.out.WakaAccessTokenResponse;
 import com.waka.time.wakatoken.domain.model.WakaToken;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <h1>WakaTime 인증 서비스</h1>
@@ -14,4 +18,5 @@ import org.springframework.stereotype.Service;
 public interface WakaAuthService {
     void authenticate(String code, String userId);
     WakaToken findByUserId(String userId);
+    List<WakaAccessTokenResponse> findWakaAccessTokenResponsesByPage(Pageable pageable);
 }

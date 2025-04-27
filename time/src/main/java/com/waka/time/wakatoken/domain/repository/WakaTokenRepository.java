@@ -1,6 +1,8 @@
 package com.waka.time.wakatoken.domain.repository;
 
 import com.waka.time.wakatoken.domain.model.WakaToken;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.Optional;
 
@@ -15,4 +17,5 @@ import java.util.Optional;
 public interface WakaTokenRepository {
     WakaToken save(WakaToken token);
     Optional<WakaToken> findByUserId(String userId);
+    Page<WakaToken> findAll(Pageable pageable);
 }
