@@ -1,0 +1,7 @@
+springdoc:
+  api-docs:
+    groups:
+      enabled: true
+  group-configs:
+    - group: wakaToken
+      paths-to-match: /wakatoken/api/v1/**

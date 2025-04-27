@@ -2,6 +2,8 @@ package com.waka.time.wakatoken.infrastructure.external;
 
 import com.waka.time.properties.WakaTimeOAuthProperties;
 import com.waka.time.wakatoken.application.service.WakaAuthService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,14 +22,16 @@ import java.nio.charset.StandardCharsets;
  * author 박석원
  * updated 2025-04-05
  */
+@Tag(name = "WakaTime OAuth", description = "WakaTime OAuth 인증 관련 API")
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/oauth")
+@RequestMapping("wakatoken/api/v1/oauth")
 public class WakaOAuthController {
 
     private final WakaAuthService wakaAuthService;
     private final WakaTimeOAuthProperties props;
 
+    @Operation(summary = "WakaTime OAuth 콜백", description = "WakaTime 인증 완료 후 code를 받아 accessToken 발급을 진행합니다.")
     @GetMapping("/callback")
     public ResponseEntity<String> callback(@RequestParam("code") String code) {
         String userId = "1";
@@ -41,6 +45,7 @@ public class WakaOAuthController {
      *
      * @return 302 Redirect to WakaTime OAuth URL
      */
+    @Operation(summary = "WakaTime OAuth 인증 시작", description = "WakaTime 로그인 페이지로 리다이렉트합니다.")
     @GetMapping("/test-login")
     public ResponseEntity<Void> redirectToWakaTime() {
         String clientId = props.getClientId();

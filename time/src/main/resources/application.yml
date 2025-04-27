@@ -5,4 +5,6 @@ spring:
     active: local
 
   config:
-    import: "classpath:wakatime.yml"
+    import:
+      - optional:classpath:wakatime.yml
+      - optional:classpath:swagger.yml

@@ -9,7 +9,7 @@ version = '0.0.1-SNAPSHOT'
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(21) // Java 21 사용
     }
 }
 
@@ -20,19 +20,29 @@ configurations {
 }
 
 repositories {
-    mavenCentral()
+    mavenCentral() // Maven 중앙 저장소 사용
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-    runtimeOnly 'org.postgresql:postgresql'
+    // Spring 기본 의존성
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // JPA (Hibernate) 연동
+    implementation 'org.springframework.boot:spring-boot-starter-web'      // Web 서버 및 REST API 지원
+
+    // Lombok
+    compileOnly 'org.projectlombok:lombok'        // 컴파일 시에만 Lombok 적용
+    annotationProcessor 'org.projectlombok:lombok' // Lombok 어노테이션 처리기
+
+    // 테스트 관련
+    testImplementation 'org.springframework.boot:spring-boot-starter-test' // Spring Boot 테스트 지원
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'           // JUnit 테스트 런처
+
+    // DB 드라이버
+    runtimeOnly 'org.postgresql:postgresql'      // PostgreSQL JDBC 드라이버
+
+    // Swagger(OpenAPI) 추가
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0' // Swagger UI + OpenAPI 3 문서화 지원
 }
 
 tasks.named('test') {
-    useJUnitPlatform()
+    useJUnitPlatform() // JUnit 5 플랫폼 사용
 }
