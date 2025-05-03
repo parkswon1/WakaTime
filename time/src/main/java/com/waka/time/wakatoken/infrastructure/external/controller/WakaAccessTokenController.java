@@ -1,5 +1,6 @@
-package com.waka.time.wakatoken.infrastructure.external;
+package com.waka.time.wakatoken.infrastructure.external.controller;
 
+import com.waka.time.wakatoken.infrastructure.external.publisher.AccessTokenPublisher;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
