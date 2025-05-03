@@ -27,6 +27,7 @@ dependencies {
     // Spring 기본 의존성
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // JPA (Hibernate) 연동
     implementation 'org.springframework.boot:spring-boot-starter-web'      // Web 서버 및 REST API 지원
+    implementation 'org.springframework.boot:spring-boot-starter-batch'    // Spring batch
 
     // Lombok
     compileOnly 'org.projectlombok:lombok'        // 컴파일 시에만 Lombok 적용

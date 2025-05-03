@@ -8,6 +8,7 @@ spring:
     import:
       - optional:classpath:wakatime.yml
       - optional:classpath:swagger.yml
+      - optional:classpath:batch.yml
 
 access-token:
   publishing:
